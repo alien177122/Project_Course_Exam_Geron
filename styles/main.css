@@ -1,0 +1,559 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@700&display=swap");
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+body {
+  width: 100vw;
+  margin: 0;
+  background-color: #fafafa;
+  /* остальное без изменений */
+  font-family: "Exo 2", sans-serif;
+}
+body h2 {
+  font-family: "Exo 2", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+body .container {
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 1530px;
+  padding-left: 170px;
+  padding-right: 50px;
+  padding-top: 100px;
+  padding-bottom: 50px;
+  font-family: sans-serif;
+  color: #333;
+  transition: 0.3s ease;
+}
+body .container .container-addBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th,
+td {
+  height: 75px;
+  border: 1px solid #d4d4d4;
+}
+
+th {
+  background: #333333;
+  text-align: left;
+}
+
+td button {
+  padding: 5px 6px 2px 6px;
+  color: #333333;
+  background-color: #ffc702;
+  border: 1px solid #ffc702;
+  transition: 0.3s;
+  border: none;
+}
+td button:hover {
+  background-color: #333333;
+  color: #ffc702;
+}
+td button:hover svg path {
+  fill: #ffc702;
+}
+td .delete-btn {
+  color: #fafafa;
+  background-color: #f44336;
+  border: 1px solid #f44336;
+  transition: 0.3s;
+  margin-left: 10px;
+}
+td .delete-btn:hover {
+  background-color: #fafafa;
+  color: #f44336;
+}
+td .delete-btn:hover svg path {
+  fill: #f44336;
+  stroke: #f44336;
+}
+
+tbody tr:nth-child(even) td {
+  background-color: #f9f9f9; /* чередование цвета строк для наглядности */
+}
+
+button {
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.primary-btn {
+  padding: 15px 63px;
+  height: 55px;
+  min-width: 300px;
+  color: #fafafa;
+  background-color: #a93dff;
+  border: 1px solid #a93dff;
+  transition: 0.3s;
+}
+.primary-btn:hover {
+  background-color: #fafafa;
+  color: #a93dff;
+}
+
+.orange {
+  padding: 15px 63px;
+  color: #333333;
+  background-color: #ffc702;
+  border: 1px solid #ffc702;
+  transition: 0.3s;
+  min-width: 225px;
+  border: none;
+}
+.orange:hover {
+  background-color: #333333;
+  color: #ffc702;
+}
+
+.cancel-btn {
+  color: #fafafa;
+  background-color: #333333;
+  border: 1px solid #333333;
+  transition: 0.3s;
+}
+.cancel-btn:hover {
+  background-color: #fafafa;
+  color: #333333;
+}
+
+.modal {
+  display: none; /* скрыто по умолчанию */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* полупрозрачный темный фон */
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  /* Вложенные стили: когда модалка открыта (класс .open добавлен через JS) */
+}
+.modal.open {
+  display: flex; /* показываем модальное окно и центрируем содержимое */
+}
+
+.modal-content {
+  background: #ffffff;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal-content .modal-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  width: 100%;
+  margin-top: 111px;
+}
+.modal-content .modal-actions .box-for-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.modal-content .modal-actions .box-for-btn button {
+  width: 225px;
+}
+.modal-content .del-box {
+  margin-top: 10px;
+}
+
+.modal-content h2 {
+  margin-bottom: 30px;
+  margin-top: 0px;
+  font-size: 20px;
+}
+
+.modal-content .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+#ordersSection #ordersTable {
+  margin-top: 0;
+}
+#ordersSection .table-data {
+  position: relative;
+}
+#ordersSection .table-data select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 45px;
+  padding: 0 16px;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #333333;
+  background-color: #ffffff;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'><path d='M1 1l5 5 5-5' stroke='%23333' fill='none' stroke-width='2'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+#ordersSection .table-data select option {
+  background-color: #2c2c2c;
+  color: #ffffff;
+  padding: 8px 16px;
+}
+#ordersSection .table-data select option:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+#ordersSection .table-data select {
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+#ordersSection .table-data ol {
+  margin: 0;
+  padding: 10px 10px 10px 40px;
+}
+#ordersSection .table-data ol li {
+  padding: 5px 0px 5px 5px;
+}
+
+/* Таблица тарифных планов */
+.table-data {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 30px;
+  table-layout: fixed;
+  font-family: "Montserrat", sans-serif;
+}
+.table-data thead tr {
+  background-color: #2c2c2c;
+}
+.table-data thead tr th {
+  border-radius: 0;
+}
+.table-data thead tr th:first-child {
+  border-top-left-radius: 8px;
+}
+.table-data thead tr th:last-child {
+  border-top-right-radius: 8px;
+}
+.table-data th {
+  font-family: "Exo 2", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  color: #ffffff;
+  border: none;
+}
+.table-data td {
+  font-family: "Exo 2", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  color: #333333;
+  padding: 0px 20px;
+}
+.table-data tbody tr:nth-child(even) td {
+  background-color: #f9f9f9;
+}
+.table-data tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 8px;
+}
+.table-data tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 8px;
+}
+
+#addForm,
+#editForm,
+#editServiceForm,
+#addServiceForm,
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+#addForm input,
+#editForm input,
+#editServiceForm input,
+#addServiceForm input,
+#loginForm input {
+  border-radius: 10px;
+  border: 1px solid #333333;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0;
+  padding: 10px;
+}
+#addForm .input-with-icon,
+#editForm .input-with-icon,
+#editServiceForm .input-with-icon,
+#addServiceForm .input-with-icon,
+#loginForm .input-with-icon {
+  width: 100%;
+  border-radius: 10px;
+  background-color: #d4d4d4;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#addForm .input-with-icon input::placeholder,
+#editForm .input-with-icon input::placeholder,
+#editServiceForm .input-with-icon input::placeholder,
+#addServiceForm .input-with-icon input::placeholder,
+#loginForm .input-with-icon input::placeholder {
+  color: #333333;
+  font-weight: 400;
+}
+#addForm .input-with-icon:hover,
+#editForm .input-with-icon:hover,
+#editServiceForm .input-with-icon:hover,
+#addServiceForm .input-with-icon:hover,
+#loginForm .input-with-icon:hover {
+  cursor: text;
+}
+#addForm .input-with-icon #addPrice,
+#addForm .input-with-icon #editPrice,
+#addForm .input-with-icon span,
+#editForm .input-with-icon #addPrice,
+#editForm .input-with-icon #editPrice,
+#editForm .input-with-icon span,
+#editServiceForm .input-with-icon #addPrice,
+#editServiceForm .input-with-icon #editPrice,
+#editServiceForm .input-with-icon span,
+#addServiceForm .input-with-icon #addPrice,
+#addServiceForm .input-with-icon #editPrice,
+#addServiceForm .input-with-icon span,
+#loginForm .input-with-icon #addPrice,
+#loginForm .input-with-icon #editPrice,
+#loginForm .input-with-icon span {
+  border: none;
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 0px;
+  font-family: "Exo 2", sans-serif;
+  width: auto;
+  font-size: 20px;
+  font-weight: 400;
+  box-sizing: content-box;
+  text-align: center;
+}
+
+#addForm input::placeholder,
+#editForm input::placeholder,
+#addServiceForm input::placeholder,
+#editServiceForm input::placeholder,
+#loginForm input::placeholder {
+  font-family: "Exo 2", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: #999999; /* можно изменить цвет placeholder */
+}
+
+/* Подсветка полей при фокусе */
+#addForm input:focus,
+#editForm input:focus,
+#addServiceForm input:focus,
+#editServiceForm input:focus,
+#loginForm input:focus,
+.input-with-icon input:focus {
+  outline: none;
+  border-color: #ffc702;
+}
+
+.close {
+  display: none;
+}
+
+.container-addBtn-search {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.container-addBtn-search .search {
+  position: relative;
+  max-width: 990px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #333333;
+  margin-right: 10px;
+}
+.container-addBtn-search .search input {
+  box-sizing: border-box;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  height: 52px;
+  border-radius: 10px;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: #333333;
+}
+.container-addBtn-search .search input::placeholder {
+  font-family: "Exo 2", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: #999999; /* можно изменить цвет placeholder */
+}
+.container-addBtn-search .search svg {
+  position: absolute;
+  top: 14px;
+  right: 10px;
+}
+
+.sidebar {
+  position: relative;
+  /* ... ваши существующие стили ... */
+  transition: width 0.3s ease;
+}
+
+.section {
+  transition: transform 0.3s ease;
+  transform-origin: left center;
+}
+
+.sidebar:hover + .container {
+  padding-left: 250px;
+}
+
+.sidebar {
+  box-sizing: border-box;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 120px;
+  height: 100vh;
+  background-color: #333;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+.sidebar:hover {
+  width: 200px;
+}
+.sidebar #logoutBtn {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  width: 100%;
+  /* при необходимости: text-align: center; */
+}
+.sidebar__logo {
+  padding: 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.sidebar__nav {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  padding: 15px 0px 15px 40px;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+.sidebar__link svg {
+  margin-right: 10px;
+}
+.sidebar__link:hover {
+  color: #ffc702;
+  background-color: #444;
+}
+.sidebar__link:hover svg path {
+  fill: #ffc702;
+}
+.sidebar__link .icon {
+  width: 24px;
+  text-align: center;
+  font-size: 1.2em;
+}
+.sidebar__link h2 {
+  margin-left: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.sidebar:hover .sidebar__link {
+  padding-left: 20px;
+}
+.sidebar:hover .sidebar__link h2 {
+  opacity: 1;
+}
+
+.section {
+  display: none;
+}
+.section.active {
+  display: block;
+}
+
+#login.modal {
+  background-color: #00CA69;
+}
+#login.modal svg {
+  position: absolute;
+  top: 65px;
+}
+
+#login .btn-purple {
+  width: 100%;
+}
+
+#revenue {
+  padding: 20px;
+}
+#revenue h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+#revenue .revenue__chart {
+  max-width: 600px;
+  margin: 0 auto;
+}
+#revenue .revenue__chart canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+/*# sourceMappingURL=main.css.map */

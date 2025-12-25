@@ -1,0 +1,24 @@
+{
+  "name": "adminka",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build:scss": "sass styles/main.scss styles/main.css",
+    "watch:scss": "sass --watch styles/main.scss styles/main.css",
+    "build:ts": "tsc",
+    "watch:ts": "tsc --watch",
+    "build": "npm run build:scss && npm run build:ts",
+    "start": "npm run watch:scss & npm run watch:ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "sass": "^1.86.3",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.9"
+  }
+}

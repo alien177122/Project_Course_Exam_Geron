@@ -1,0 +1,7 @@
+{
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.codeActionWidget.showHeaders": true,
+    "editor.codeLens": true,
+    "CodeGPT.apiKey": "OpenAI",
+    "chatgpt.openOnStartup": true
+}

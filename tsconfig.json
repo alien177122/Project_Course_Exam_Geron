@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "ESNext",            // вместо "none"
+    "moduleResolution": "node",    // чтобы TS находил пакеты в node_modules
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "outDir": "./scripts",
+    "rootDir": "./scripts",
+  },
+  "include": ["scripts/**/*.ts"],
+  "exclude": ["node_modules"]
+}
